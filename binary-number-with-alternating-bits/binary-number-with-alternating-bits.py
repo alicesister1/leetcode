@@ -1,6 +1,6 @@
 class Solution:
     def hasAlternatingBits(self, n: int) -> bool:
-        return self.soulition1(n)
+        return self.soulition3(n)
     
     # 문자열을 2진수 형태로 바꾼 후 직접 비교
     def soulition1(self, n: int) -> bool:
@@ -32,3 +32,16 @@ class Solution:
             # 현재 첫 번째 비트를 다음 n의 첫 번째 비트와 비교를 위해 저장
             prev_bit = current_bit
         return True 
+    
+    # 2의 제곱수 구하는 방식을 이용해 비교
+    def soulition3(self, n: int) -> bool:
+        # 101010 n
+        # 10101  n >> 1
+        # 111111 n ^ (n>>1)
+        # 111111
+        # +    1
+        # 1000000
+        # &111111
+        # 0000000
+        n = n ^ (n >> 1)
+        return (n & n+1) == 0
